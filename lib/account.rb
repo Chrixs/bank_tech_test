@@ -5,6 +5,8 @@ class Account
 
   attr_accessor :balance, :statement
 
+  STATEMENT_HEADERS = "date       || credit || debit   || balance\n"
+
   def initialize(balance = 0)
     @balance = balance
     @statement = Statement.new
@@ -16,14 +18,18 @@ class Account
 
   def deposit(amount)
     add_to_balance(amount)
-    transaction = Transaction.new(amount)
+    transaction = Transaction.new(amount, balance)
     push_to_array(transaction)
   end
 
   def withdraw(amount)
     remove_from_balance(amount)
-    transaction = Transaction.new(-amount)
+    transaction = Transaction.new(-amount, balance)
     push_to_array(transaction)
+  end
+
+  def print_statement
+    transaction_loop
   end
 
   private
@@ -38,6 +44,26 @@ class Account
 
   def push_to_array(transaction)
     self.statement.transactions << transaction
+  end
+
+  def transaction_loop
+    statement = STATEMENT_HEADERS
+    self.statement.transactions.reverse.each do |transaction|
+      if transaction.amount > 0
+        statement += credit(transaction.date, transaction.amount, transaction.balance)
+      else
+        statement += debit(transaction.date, transaction.amount, transaction.balance)
+      end
+    end
+    print statement
+  end
+
+  def credit(date, amount, balance)
+    "#{date.ljust(8)} || #{('%.2f' % amount).to_s.ljust(8)}|| #{''.ljust(6)}|| #{('%.2f' % balance).to_s.ljust(8)}\n"
+  end
+
+  def debit(date, amount, balance)
+    "#{date.ljust(8)} || #{''.ljust(6)} || #{('%.2f' % amount).to_s.ljust(8)}|| #{('%.2f' % balance).to_s.ljust(8)}\n"
   end
 
 end

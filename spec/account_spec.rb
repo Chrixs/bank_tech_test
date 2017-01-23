@@ -29,5 +29,4 @@ describe Account do
     expect(account.statement.transactions).not_to be_empty
   end
 
-
 end

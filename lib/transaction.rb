@@ -3,10 +3,11 @@ require "date"
 
 class Transaction
 
-  attr_reader :date, :amount
+  attr_reader :date, :amount, :balance
 
-  def initialize(amount)
-    @amount = amount.to_s
+  def initialize(amount, balance)
+    @amount = amount
+    @balance = balance
     @date = Date.today.to_s
   end
 
