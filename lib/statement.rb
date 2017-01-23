@@ -1,3 +1,5 @@
+require "./lib/account"
+
 class Statement
 
   attr_reader :transactions
