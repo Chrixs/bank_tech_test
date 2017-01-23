@@ -8,5 +8,9 @@ describe Account do
     expect(new_account).to be_an_instance_of(Account)
   end
 
+  it "expects an account to have a default balance of 0 when created" do
+    expect(account.balance).to eq 0
+  end
+
 
 end
