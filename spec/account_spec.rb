@@ -1,7 +1,7 @@
 require "account"
 
 describe Account do
-  subject(:account) {described_class.new}
+  subject(:account) { described_class.new }
 
   it "tests that an account can be created" do
     new_account = Account.new
