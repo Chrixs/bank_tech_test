@@ -12,5 +12,10 @@ describe Account do
     expect(account.balance).to eq 0
   end
 
+  it "tests that money can be deposited into an account" do
+    account.deposit(4000)
+    expect(account.balance).to eq 4000
+  end
+
 
 end
