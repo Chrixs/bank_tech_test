@@ -17,5 +17,11 @@ describe Account do
     expect(account.balance).to eq 4000
   end
 
+  it "tests that money can be withdrawn from an account" do
+    new_account = Account.new(500)
+    new_account.withdraw(200)
+    expect(new_account.balance).to eq 300
+  end
+
 
 end
