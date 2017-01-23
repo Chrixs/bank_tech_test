@@ -1,12 +1,12 @@
 require "./lib/account.rb"
 require "date"
 
-class TransactionsHandler
+class Transaction
 
   attr_reader :date, :amount
 
   def initialize(amount)
-    @amount = amount
+    @amount = amount.to_s
     @date = Date.today.to_s
   end
 

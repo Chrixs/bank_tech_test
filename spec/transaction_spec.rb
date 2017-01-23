@@ -1,14 +1,14 @@
-require "transactions_handler"
+require "transaction"
 
-describe TransactionsHandler do
+describe Transaction do
 
   subject(:transaction) { described_class.new(10) }
   let(:account) { double :account}
   let(:statement) { double :statement}
 
   it "tests that a transaction can be instantiated" do
-    new_transaction = TransactionsHandler.new(10)
-    expect(new_transaction).to be_an_instance_of(TransactionsHandler)
+    new_transaction = Transaction.new(10)
+    expect(new_transaction).to be_an_instance_of(Transaction)
   end
 
   it "transactions are created with current date" do

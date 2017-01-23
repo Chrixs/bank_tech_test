@@ -2,6 +2,7 @@ require "account"
 
 describe Account do
   subject(:account) { described_class.new }
+  let(:statement) { double :statement}
 
   it "tests that an account can be created" do
     new_account = Account.new
@@ -21,6 +22,11 @@ describe Account do
     new_account = Account.new(500)
     new_account.withdraw(200)
     expect(new_account.balance).to eq 300
+  end
+
+  it "expects deposits to push transaction into array" do
+    account.deposit(1000)
+    expect(account.statement.transactions).not_to be_empty
   end
 
 
