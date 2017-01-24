@@ -7,9 +7,9 @@ class Account
 
   STATEMENT_HEADERS = "date       || credit || debit   || balance\n"
 
-  def initialize(balance = 0)
+  def initialize(balance = 0, statement=Statement)
     @balance = balance
-    @statement = Statement.new
+    @statement = statement.new
   end
 
   def balance
@@ -55,15 +55,15 @@ class Account
         statement += debit(transaction.date, transaction.amount, transaction.balance)
       end
     end
-    print statement
+    return statement
   end
 
   def credit(date, amount, balance)
-    "#{date.ljust(8)} || #{('%.2f' % amount).to_s.ljust(8)}|| #{''.ljust(6)}|| #{('%.2f' % balance).to_s.ljust(8)}\n"
+    "#{date.ljust(11)}|| #{('%.2f' % amount).to_s.ljust(7)}|| #{''.ljust(8)}|| #{('%.2f' % balance).to_s.ljust(7)}\n"
   end
 
   def debit(date, amount, balance)
-    "#{date.ljust(8)} || #{''.ljust(6)} || #{('%.2f' % amount).to_s.ljust(8)}|| #{('%.2f' % balance).to_s.ljust(8)}\n"
+    "#{date.ljust(11)}|| #{''.ljust(7)}|| #{('%.2f' % amount).to_s.ljust(8)}|| #{('%.2f' % balance).to_s.ljust(7)}\n"
   end
 
 end

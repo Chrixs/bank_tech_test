@@ -1,11 +1,11 @@
 require "account"
 
 describe Account do
-  subject(:account) { described_class.new }
+  subject(:account) { described_class.new(0, Statement) }
   let(:statement) { double :statement}
 
   it "tests that an account can be created" do
-    new_account = Account.new
+    new_account = Account.new(0, Statement)
     expect(new_account).to be_an_instance_of(Account)
   end
 
@@ -19,7 +19,7 @@ describe Account do
   end
 
   it "tests that money can be withdrawn from an account" do
-    new_account = Account.new(500)
+    new_account = Account.new(500, Statement)
     new_account.withdraw(200)
     expect(new_account.balance).to eq 300
   end
